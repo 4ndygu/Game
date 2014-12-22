@@ -1,3 +1,6 @@
+// ConsoleApplication1.cpp : Defines the entry point for the console application.
+//
+
 #include <iostream> 
 #include <ctime>
 
@@ -9,7 +12,7 @@ int matrix[rows][columns];
 const int maxships = 10;
 
 // Set all positions to initial 0
-void Clear() {	
+void Clear() {
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
 			matrix[i][j] = 0;
@@ -18,16 +21,16 @@ void Clear() {
 }
 
 // Display matrix
-void Show() {	
+void Show() {
 
 	// Print number guidelines (top)
 	cout << "  ";
-	for (int i = 0; i < columns; i++) {	
+	for (int i = 0; i < columns; i++) {
 		cout << i << " ";
 	}
 	cout << "(x)";	// Indicates x-axis
 	cout << endl << "  ";
-	for (int i = 0; i < columns; i++) {	
+	for (int i = 0; i < columns; i++) {
 		cout << "| ";
 	}
 	cout << endl;
@@ -35,6 +38,8 @@ void Show() {
 	for (int i = 0; i < rows; i++) {
 		cout << i << " - ";	// Print number guidelines (left side)
 		for (int j = 0; j < columns; j++) {
+			if (matrix[i][j] == 1) { system("color 94"); }
+			else { system("color 97"); }
 			cout << matrix[i][j] << " ";
 		}
 		cout << endl;
@@ -43,7 +48,7 @@ void Show() {
 }
 
 // Randomly place ships on matrix
-void SetShips() {	
+void SetShips() {
 	int ships = 0;
 	while (ships < maxships) {
 		int x = rand() % rows;
@@ -56,7 +61,7 @@ void SetShips() {
 }
 
 // Change attacked ship position value and return boolean
-bool Attack(int x, int y) {	
+bool Attack(int x, int y) {
 	if (matrix[y][x] == 1) {	// switch spot of x and y to accommodate matrix
 		matrix[y][x] = 2;		// switch spot of x and y to accommodate matrix
 		return true;
@@ -65,7 +70,7 @@ bool Attack(int x, int y) {
 }
 
 // For calculating number of ships remaining
-int ShipsLeft() {	
+int ShipsLeft() {
 	int c = 0;
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
@@ -81,7 +86,7 @@ int main() {
 	srand(time(0));
 
 	// Initialize Game
-	Clear();	
+	Clear();
 	cout << "Cleared board: " << endl;
 	Show();
 	SetShips();
@@ -102,11 +107,11 @@ int main() {
 
 		bool checkAttack = Attack(pos1, pos2);
 		// Attack successful
-		if (checkAttack) {	
+		if (checkAttack) {
 			cout << "You got me!" << endl;
 		}
 		// Attack not successful
-		else {	
+		else {
 			cout << "Sorry, there are no ships there." << endl;
 		}
 
