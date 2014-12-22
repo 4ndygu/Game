@@ -33,7 +33,7 @@ void Show() {
 	cout << endl;
 
 	for (int i = 0; i < rows; i++) {
-		cout << i << " ";	// Print number guidelines (left side)
+		cout << i << " - ";	// Print number guidelines (left side)
 		for (int j = 0; j < columns; j++) {
 			cout << matrix[i][j] << " ";
 		}
