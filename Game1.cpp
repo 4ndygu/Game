@@ -19,12 +19,27 @@ void Clear() {
 
 // Display matrix
 void Show() {	
+
+	// Print number guidelines (top)
+	cout << "  ";
+	for (int i = 0; i < columns; i++) {	
+		cout << i << " ";
+	}
+	cout << "(x)";	// Indicates x-axis
+	cout << endl << "  ";
+	for (int i = 0; i < columns; i++) {	
+		cout << "| ";
+	}
+	cout << endl;
+
 	for (int i = 0; i < rows; i++) {
+		cout << i << " ";	// Print number guidelines (left side)
 		for (int j = 0; j < columns; j++) {
 			cout << matrix[i][j] << " ";
 		}
 		cout << endl;
 	}
+	cout << "(y)" << endl;	// Indicates y-axis
 }
 
 // Randomly place ships on matrix
@@ -33,8 +48,8 @@ void SetShips() {
 	while (ships < maxships) {
 		int x = rand() % rows;
 		int y = rand() % columns;
-		if (matrix[x][y] != 1) {
-			matrix[x][y] = 1;
+		if (matrix[y][x] != 1) {
+			matrix[y][x] = 1;
 			ships++;
 		}
 	}
